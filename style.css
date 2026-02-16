@@ -1,0 +1,71 @@
+body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 20px; }
+.container { max-width: 800px; margin: 0 auto; }
+
+/* Card Styling */
+.category-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.card-title { font-size: 1.2rem; font-weight: bold; color: #333; }
+
+/* Hashtag Buttons */
+.tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tag-chip {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tag-chip:hover { background-color: #ffe100; border-color: #e6c200; } /* Lemon8 Yellow */
+.tag-chip.trending { border-color: #ff4757; color: #ff4757; }
+
+/* Action Buttons */
+.btn-copy-all {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-copy-all:hover { background-color: #555; }
+
+/* Toast Notification */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 17px;
+}
+#toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
