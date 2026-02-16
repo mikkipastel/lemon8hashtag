@@ -121,3 +121,25 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 2
 
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
 @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer a {
+    color: #ffe100;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.footer a:hover {
+    color: #e6c200;
+    text-decoration: underline;
+}
