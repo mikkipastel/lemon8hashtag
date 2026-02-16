@@ -15,14 +15,48 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 2
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: none;
     padding-bottom: 10px;
+    gap: 10px;
+    transition: border-bottom 0.3s ease, margin-bottom 0.3s ease;
 }
 
-.card-title { font-size: 1.2rem; font-weight: bold; color: #333; }
+.category-card.card-collapsed .card-header {
+    margin-bottom: 0;
+}
+
+.category-card:not(.card-collapsed) .card-header {
+    border-bottom: 1px solid #eee;
+}
+
+.btn-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.btn-toggle:hover { color: #ffe100; }
+
+.card-title { font-size: 1.2rem; font-weight: bold; color: #333; flex-grow: 1; }
 
 /* Hashtag Buttons */
-.tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.tags-container.collapsed {
+    max-height: 0;
+    gap: 0;
+}
 
 .tag-chip-label {
     display: flex;
@@ -62,6 +96,8 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 2
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 .btn-copy-all:hover { background-color: #555; }
 

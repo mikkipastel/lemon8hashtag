@@ -1,5 +1,7 @@
 // State สำหรับเก็บ selected hashtags
 const selectedTags = {};
+// State สำหรับเก็บ collapsed status ของ cards
+const collapsedCards = {};
 
 // ฟังก์ชันนับจำนวน hashtags ที่เลือก
 function countSelected(catIndex) {
@@ -15,6 +17,24 @@ function updateButtonText(catIndex) {
     }
 }
 
+// ฟังก์ชัน Toggle Card Collapse
+function toggleCard(catIndex) {
+    collapsedCards[catIndex] = !collapsedCards[catIndex];
+    const card = document.querySelector(`div[data-card-index="${catIndex}"]`);
+    const container = document.querySelector(`div[data-cat-container="${catIndex}"]`);
+    const toggleBtn = document.querySelector(`button[data-toggle="${catIndex}"]`);
+    
+    if (card) {
+        card.classList.toggle('card-collapsed');
+    }
+    if (container) {
+        container.classList.toggle('collapsed');
+    }
+    if (toggleBtn) {
+        toggleBtn.textContent = collapsedCards[catIndex] ? '▶' : '▼';
+    }
+}
+
 // 1. ฟังก์ชัน Render หน้าเว็บ
 function renderApp(data) {
     document.getElementById('last-updated').textContent = data.last_updated;
@@ -24,17 +44,19 @@ function renderApp(data) {
     data.categories.forEach((cat, catIndex) => {
         // สร้าง Card สำหรับแต่ละหมวดหมู่
         const card = document.createElement('div');
-        card.className = 'category-card';
+        card.className = 'category-card card-collapsed';
+        card.setAttribute('data-card-index', catIndex);
 
         // สร้าง HTML ภายใน Card
         card.innerHTML = `
             <div class="card-header">
+                <button class="btn-toggle" data-toggle="${catIndex}" onclick="toggleCard(${catIndex})">▶</button>
                 <span class="card-title">${cat.name}</span>
                 <button class="btn-copy-all" data-cat="${catIndex}" onclick="copySelected(${catIndex})">
                     Copy Selected (0)
                 </button>
             </div>
-            <div class="tags-container">
+            <div class="tags-container collapsed" data-cat-container="${catIndex}">
                 ${cat.hashtags.map((tag, tagIndex) => `
                     <label class="tag-chip-label">
                         <input type="checkbox" class="tag-checkbox" data-cat="${catIndex}" data-tag="${tagIndex}" onchange="toggleSelect(${catIndex}, ${tagIndex}, this.checked)">
@@ -48,6 +70,9 @@ function renderApp(data) {
         // Initialize selected tags for this category
         if (!selectedTags[catIndex]) {
             selectedTags[catIndex] = {};
+        }
+        if (!collapsedCards.hasOwnProperty(catIndex)) {
+            collapsedCards[catIndex] = true;
         }
     });
 }
