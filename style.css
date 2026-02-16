@@ -24,9 +24,19 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 2
 /* Hashtag Buttons */
 .tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
 
+.tag-chip-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tag-checkbox {
+    display: none;
+}
+
 .tag-chip {
     background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 20px;
     padding: 6px 12px;
     font-size: 0.9rem;
@@ -35,7 +45,13 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f9f9f9; padding: 2
 }
 
 .tag-chip:hover { background-color: #ffe100; border-color: #e6c200; } /* Lemon8 Yellow */
-.tag-chip.trending { border-color: #ff4757; color: #ff4757; }
+
+.tag-checkbox:checked + .tag-chip {
+    background-color: #ffe100;
+    border-color: #e6c200;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255, 225, 0, 0.5);
+}
 
 /* Action Buttons */
 .btn-copy-all {
