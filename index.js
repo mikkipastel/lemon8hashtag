@@ -31,7 +31,7 @@ function toggleCard(catIndex) {
         container.classList.toggle('collapsed');
     }
     if (toggleBtn) {
-        toggleBtn.textContent = collapsedCards[catIndex] ? '▶' : '▼';
+        toggleBtn.textContent = collapsedCards[catIndex] ? '▽' : '△';
     }
 }
 
@@ -50,11 +50,8 @@ function renderApp(data) {
         // สร้าง HTML ภายใน Card
         card.innerHTML = `
             <div class="card-header">
-                <button class="btn-toggle" data-toggle="${catIndex}" onclick="toggleCard(${catIndex})">▶</button>
                 <span class="card-title">${cat.name}</span>
-                <button class="btn-copy-all" data-cat="${catIndex}" onclick="copySelected(${catIndex})">
-                    Copy Selected (0)
-                </button>
+                <button class="btn-toggle" data-toggle="${catIndex}" onclick="toggleCard(${catIndex})">▽</button>
             </div>
             <div class="tags-container collapsed" data-cat-container="${catIndex}">
                 ${cat.hashtags.map((tag, tagIndex) => `
@@ -63,6 +60,11 @@ function renderApp(data) {
                         <span class="tag-chip">${tag}</span>
                     </label>
                 `).join('')}
+            </div>
+            <div class="card-footer">
+                <button class="btn-copy-all" data-cat="${catIndex}" onclick="copySelected(${catIndex})">
+                    Copy Selected (0)
+                </button>
             </div>
         `;
         app.appendChild(card);
